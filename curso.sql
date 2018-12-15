@@ -17,7 +17,22 @@ CREATE TABLE jobs
     -- specify more columns here
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- projects
+
+CREATE TABLE projects
+(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- primary key column
+    title text NOT NULL,
+    description text NOT NULL,
+    visible BOOLEAN NOT NULL,
+    months TINYINT NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME NOT NULL
+    -- specify more columns here
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 -- cambios para ORM eloquent
 
-ALTER TABLE `jobs` ADD `created_at` DATETIME NOT NULL AFTER `months`, ADD `update_at` DATETIME NOT NULL AFTER `created_at`;
+ALTER TABLE `jobs` ADD `created_at` DATETIME NOT NULL AFTER `months`, ADD `updated_at` DATETIME NOT NULL AFTER `created_at`;
+

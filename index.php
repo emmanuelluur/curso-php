@@ -1,4 +1,29 @@
-<?php include_once "info.php"?>
+<?php 
+
+require_once "vendor/autoload.php";
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'database'  => 'platzi_curso',
+    'username'  => 'root',
+    'password'  => '',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+]);
+
+// Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
+
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();
+include_once "info.php";
+?>
 <!doctype html>
 <html lang="en">
 
@@ -23,7 +48,7 @@
       </div>
       <div class="col">
         <h1><?php if(isset($name)){echo $name;}else{echo "Name";}?></h1>
-        <h2><?php if(isset($jobs)){echo $jobs[0]->getTitle();}else{echo "Job";}?></h2>
+        <h2><?php if(isset($jobs)){echo $jobs[0]->title;}else{echo "Job";}?></h2>
         <ul>
           <li>Mail: emmanuelluur@gmail.com</li>
           <li>Phone: 1234567890</li>
