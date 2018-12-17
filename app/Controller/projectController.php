@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Model\Project;
 
-class ProjectController
+class ProjectController extends BaseController
 {
     public function getProject($request)
     {
@@ -15,6 +15,7 @@ class ProjectController
             $project->visible = true;
             $project->save();
         }
-        include_once "../views/addProjects.php";
+        //  include_once "../views/addProjects.php";
+        return $this->RenderHtml('addProjects.twig');
     }
 }

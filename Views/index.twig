@@ -49,8 +49,8 @@
         <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
       </div>
       <div class="col">
-        <h1><?php if (isset($name)) {echo $name;} else {echo "Name";}?></h1>
-        <h2><?php if (isset($jobs)) {echo @$jobs[0]->title;} else {echo "Job";}?></h2>
+        <h1> {{ name }} </h1>
+        <h2>PHP Developer</h2>
         <ul>
           <li>Mail: emmanuelluur@gmail.com</li>
           <li>Phone: 1234567890</li>
@@ -73,62 +73,35 @@
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-              <?php
-//    imprime trabajos
-$totalMont = 0;
-$size = count($jobs);
-$cont = 0;
-for ($cont; $cont < $size; $cont++):
-    $totalMont += $jobs[$cont]->meses;
-    if ($totalMont > $mesesLimite):
-        break;
-    endif;
-
-    ListElements($jobs[$cont]);
-endfor;
-?>
+            {% for job in jobs %}
+              <li class = 'work-position'>
+                <h5>{{ job.title|e }}</h5>
+                <p>{{ job.description|e }}</p>
+              </li>
+            {% endfor %}
           </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
-            <div class="project">
-            <?php
-//    imprime trabajos
-$size = count($projects);
-$cont = 0;
-for ($cont; $cont < $size; $cont++):
-    ListElements($projects[$cont]);
-endfor;
-?>
-                <h5>Project X</h5>
-                <div class="row">
-                    <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
-                      </div>
-                      <div class="col">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
-                        <strong>Technologies used:</strong>
-                        <span class="badge badge-secondary">PHP</span>
-                        <span class="badge badge-secondary">HTML</span>
-                        <span class="badge badge-secondary">CSS</span>
-                      </div>
+          
+            {% for project in projects %}
+              <h5>{{ project.title|e }}</h5>
+              <div class = 'row'>
+              
+                <div class="col-3">
+                  <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
                 </div>
-            </div>
-            <div class="project">
-                <h5>Project X</h5>
-                <div class="row">
-                    <div class="col-3">
-                        <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
-                      </div>
-                      <div class="col">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
-                        <strong>Technologies used:</strong>
-                        <span class="badge badge-secondary">PHP</span>
-                        <span class="badge badge-secondary">HTML</span>
-                        <span class="badge badge-secondary">CSS</span>
-                      </div>
+                <div class="col">
+                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius earum corporis at accusamus quisquam hic quos vel? Tenetur, ullam veniam consequatur esse quod cum, quam cupiditate assumenda natus maiores aperiam.</p>
+                  <strong>Technologies used:</strong>
+                  <span class="badge badge-secondary">PHP</span>
+                  <span class="badge badge-secondary">HTML</span>
+                  <span class="badge badge-secondary">CSS</span>
                 </div>
-            </div>
+                
+              </div>
+            {% endfor %}
+            
           </div>
       </div>
       <div class="col-3">
@@ -155,7 +128,7 @@ endfor;
     </div>
     <div id="resume-footer" class="row">
       <div class="col">
-          Designed by @hectorbenitez
+          Designed by @emmanuelluur
       </div>
     </div>
   </div>

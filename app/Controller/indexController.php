@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 use App\Model\{Job,Project};
-class IndexController
+class IndexController extends BaseController
 {
     public function getIndex()
     {
@@ -13,6 +13,11 @@ class IndexController
         $projects = Project::get();
         
         $name = "Emmanuel Lucio Urbina";
-        include_once "../views/index.php";
+        //  include_once "../views/index.php";
+        return $this->RenderHtml('index.twig',[
+            'name' => $name,
+            'jobs' => $jobs,
+            'projects' => $projects
+        ]);
     }
 }

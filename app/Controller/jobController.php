@@ -3,7 +3,7 @@ namespace App\Controller;
 
 use App\Model\Job;
 
-class JobController
+class JobController extends BaseController
 {
     public function getJob($request)
     {
@@ -15,6 +15,7 @@ class JobController
             $job->visible = true;
             $job->save();
         }
-        include_once "../views/addJobs.php";
+        //  include_once "../views/addJobs.php";
+        return $this->RenderHtml('addJobs.twig');
     }
 }
