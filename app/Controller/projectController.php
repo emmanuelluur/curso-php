@@ -15,6 +15,6 @@ class ProjectController
             $project->visible = true;
             $project->save();
         }
-        include_once "../Views/addProjects.php";
+        include_once "../views/addProjects.php";
     }
 }
