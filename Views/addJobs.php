@@ -13,7 +13,7 @@
         <p>
             <h1>ADD JOB</h1>
         </p>
-        <form action="addJobs.php" method = 'post'>
+        <form action="../jobs/add" method = 'post'>
             <div class = "form-group">
                 <label for="title">Titulo</label>
                 <input type="text" class = 'form-control' name="title" id="title">

@@ -70,10 +70,17 @@ $map->get('addJobs', '/platzi-php-curso/jobs/add', [
     'controller' => 'App\Controller\JobController',
     'action' => 'getJob'
 ]);
+
+$map->post('saveJobs', '/platzi-php-curso/jobs/add', [
+    'controller' => 'App\Controller\JobController',
+    'action' => 'getJob'
+]);
+
 $map->get('addProjects', '/platzi-php-curso/projects/add', [
     'controller' => "App\Controller\ProjectController",
     'action' => "getProject"
     ]);
+
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 
@@ -88,6 +95,6 @@ if (!$route) {
 
     $controller = new $controllerName;
 
-    $controller->$actionName();
+    $controller->$actionName($request);
 }
 

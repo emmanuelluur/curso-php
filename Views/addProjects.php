@@ -13,7 +13,7 @@
         <p>
             <h1>ADD PROJECT</h1>
         </p>
-        <form action="" method = 'post'>
+        <form action="../projects/add" method = 'post'>
             <div class = "form-group">
                 <label for="title">Titulo</label>
                 <input type="text" class = 'form-control' name="title" id="title">
