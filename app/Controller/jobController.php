@@ -1,11 +1,13 @@
 <?php
 namespace App\Controller;
+
 use App\Model\Job;
+
 class JobController
 {
-    function getJob($request)
+    public function getJob($request)
     {
-        if($request->getMethod() == 'POST'){
+        if ($request->getMethod() == 'POST') {
             $datos = $request->getParsedBody();
             $job = new Job;
             $job->title = $datos['title'];

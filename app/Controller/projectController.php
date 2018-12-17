@@ -5,13 +5,13 @@ use App\Model\Project;
 
 class ProjectController
 {
-    public function getProject()
+    public function getProject($request)
     {
-
-        if (!empty($_POST) && isset($_POST['saveProject'])) {
+        if ($request->getMethod() == 'POST') {
+            $datos = $request->getParsedBody();
             $project = new Project;
-            $project->title = $_POST['title'];
-            $project->description = $_POST['description'];
+            $project->title = $datos['title'];
+            $project->description = $datos['description'];
             $project->visible = true;
             $project->save();
         }

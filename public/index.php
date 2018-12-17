@@ -79,7 +79,12 @@ $map->post('saveJobs', '/platzi-php-curso/jobs/add', [
 $map->get('addProjects', '/platzi-php-curso/projects/add', [
     'controller' => "App\Controller\ProjectController",
     'action' => "getProject"
-    ]);
+]);
+
+$map->post('saveProjects', '/platzi-php-curso/projects/add', [
+    'controller' => "App\Controller\ProjectController",
+    'action' => "getProject"
+]);
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);

@@ -10,8 +10,35 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="Views/style.css">
+  <link rel="stylesheet" href="views/style.css">
+  <style>
+  #resume-header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
+#profile-picture {
+    width: 100%;
+}
+
+#resume-footer {
+    padding: 20px;
+    text-align: center;
+}
+
+.border-bottom-gray {
+    padding-bottom: 10px;
+    border-bottom: solid 1px darkgray;
+}
+
+.work-position {
+    margin-bottom: 40px;
+}
+
+.project {
+    margin-bottom: 40px;
+}
+  </style>
   <title>Resume</title>
 </head>
 
@@ -22,8 +49,8 @@
         <img id="profile-picture" src="https://ui-avatars.com/api/?name=John+Doe&size=255" alt="">
       </div>
       <div class="col">
-        <h1><?php if(isset($name)){echo $name;}else{echo "Name";}?></h1>
-        <h2><?php if(isset($jobs)){echo @ $jobs[0]->title;}else{echo "Job";}?></h2>
+        <h1><?php if (isset($name)) {echo $name;} else {echo "Name";}?></h1>
+        <h2><?php if (isset($jobs)) {echo @$jobs[0]->title;} else {echo "Job";}?></h2>
         <ul>
           <li>Mail: emmanuelluur@gmail.com</li>
           <li>Phone: 1234567890</li>
@@ -47,32 +74,32 @@
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
               <?php
-              //    imprime trabajos
-              $totalMont = 0;
-              $size = count($jobs);
-              $cont = 0;
-              for($cont; $cont < $size; $cont ++):
-                $totalMont += $jobs[$cont]->meses;
-                if($totalMont > $mesesLimite):
-                  break;
-                endif;
-                
-                ListElements($jobs[$cont]);
-              endfor;
-              ?>
+//    imprime trabajos
+$totalMont = 0;
+$size = count($jobs);
+$cont = 0;
+for ($cont; $cont < $size; $cont++):
+    $totalMont += $jobs[$cont]->meses;
+    if ($totalMont > $mesesLimite):
+        break;
+    endif;
+
+    ListElements($jobs[$cont]);
+endfor;
+?>
           </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
             <div class="project">
             <?php
-              //    imprime trabajos
-              $size = count($projects);
-              $cont = 0;
-              for($cont; $cont < $size; $cont ++):
-                ListElements($projects[$cont]);
-              endfor;
-              ?>
+//    imprime trabajos
+$size = count($projects);
+$cont = 0;
+for ($cont; $cont < $size; $cont++):
+    ListElements($projects[$cont]);
+endfor;
+?>
                 <h5>Project X</h5>
                 <div class="row">
                     <div class="col-3">
