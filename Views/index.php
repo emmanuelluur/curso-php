@@ -1,6 +1,4 @@
-<?php 
-include_once "info.php";
-?>
+
 <!doctype html>
 <html lang="en">
 
@@ -12,7 +10,7 @@ include_once "info.php";
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
     crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="Views/style.css">
 
   <title>Resume</title>
 </head>
@@ -25,7 +23,7 @@ include_once "info.php";
       </div>
       <div class="col">
         <h1><?php if(isset($name)){echo $name;}else{echo "Name";}?></h1>
-        <h2><?php if(isset($jobs)){echo $jobs[0]->title;}else{echo "Job";}?></h2>
+        <h2><?php if(isset($jobs)){echo @ $jobs[0]->title;}else{echo "Job";}?></h2>
         <ul>
           <li>Mail: emmanuelluur@gmail.com</li>
           <li>Phone: 1234567890</li>

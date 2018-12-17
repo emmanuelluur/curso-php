@@ -1,9 +1,7 @@
 <?php
 require_once "../vendor/autoload.php";
-use Illuminate\Database\Capsule\Manager as Capsule;
 use Aura\Router\RouterContainer;
-
-
+use Illuminate\Database\Capsule\Manager as Capsule;
 
 //  Muestra errores php
 ini_set('display_errors', 1);
@@ -14,14 +12,14 @@ error_reporting(E_ALL);
 $capsule = new Capsule;
 
 $capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'platzi_curso',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
+    'driver' => 'mysql',
+    'host' => 'localhost',
+    'database' => 'platzi_curso',
+    'username' => 'root',
+    'password' => '',
+    'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
+    'prefix' => '',
 ]);
 
 // Make this Capsule instance available globally via static methods... (optional)
@@ -40,25 +38,56 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_COOKIE,
     $_FILES
 );
+//
+function ListElements($itm)
+{
+    // if ($jobs->visible == false):
+    //     //  si es falso brinca a la siguiente iteracion
+    //     return;
+    // endif;
+    echo "<li class = 'work-position'>";
+    echo "<h5>{$itm->title}</h5>";
+    echo "<p>{$itm->description}</p>";
+    echo $itm->ListMeses();
+    echo "
+    <strong>Achievements:</strong>
+    <ul>
+      <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+      <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+      <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
+    </ul>";
+    echo "</li>";
+}
+//
 
-$map->get('index', '/Platzi-curso/Proyecto/','../index.php');
-$map->get('addJobs', '/Platzi-curso/Proyecto/jobs/add','../addJobs.php');
-$map->get('addProjects', '/Platzi-curso/Proyecto/projects/add','../addProjects.php');
+$map->get('index', '/platzi-php-curso/', [
+    'controller' => 'App\Controller\IndexController',
+    'action' => 'getIndex'
+]);
+
+
+$map->get('addJobs', '/platzi-php-curso/jobs/add', [
+    'controller' => 'App\Controller\JobController',
+    'action' => 'getJob'
+]);
+$map->get('addProjects', '/platzi-php-curso/projects/add', [
+    'controller' => "App\Controller\ProjectController",
+    'action' => "getProject"
+    ]);
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
 
-if(!$route){
+if (!$route) {
     echo "404";
-}else{
-    require_once $route->handler;
-}
-// var_dump();
-/*
-$route = $_GET['route'] ?? '/'; //  si esta definido route 
+} else {
+    $handlerData = $route->handler;
 
-if($route == '/'){
-    require_once "../index.php";
-}else{
-    require_once "../{$route}.php";
+    $controllerName = $handlerData['controller'];
+
+    $actionName = $handlerData['action'];
+
+    $controller = new $controllerName;
+
+    $controller->$actionName();
 }
-*/
+

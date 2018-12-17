@@ -1,17 +1,6 @@
 <?php
 use App\Model\{Job, Project, Printable};
 
-$name = "Emmanuel Lucio Urbina";
-//  Trabajos
-$jobs = Job::get();
-
-
-// Limite de meses a mostar
-$mesesLimite = 240;
-//  Projectos
-$projects = Project::get();
-
-
 //  trabajos
 function ListElements($itm)
 {
