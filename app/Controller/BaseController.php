@@ -4,8 +4,10 @@ namespace App\Controller;
  * load view templates
  *  \ = entorno global, Twig no usa namespaces
  */
-use \Twig_Loader_Filesystem,\Twig_Environment;
-use Zend\Diactoros\Response\HtmlResponse;
+use \Twig_Loader_Filesystem,
+    \Twig_Environment,
+    Zend\Diactoros\Response\HtmlResponse;
+
 class BaseController
 {
     protected $templeteEngine;
