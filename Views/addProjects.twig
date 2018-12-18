@@ -12,6 +12,9 @@
             <label for="title">Descripción</label>
             <input type="text" class='form-control' name="description" id="description">
         </div>
+        <div class='{{ cssClass }}'>
+            {{ responseMessage }}
+        </div>
         <button type="submit" class='btn btn-success' name='saveProject' id='saveProject'>Registrar</button>
     </form>
 {% endblock %}
