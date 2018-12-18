@@ -1,8 +1,8 @@
 <?php
 require_once "../vendor/autoload.php";
-use Aura\Router\RouterContainer;
-use Illuminate\Database\Capsule\Manager as Capsule;
 
+use Illuminate\Database\Capsule\Manager as Capsule;
+use Aura\Router\RouterContainer;
 //  Muestra errores php
 ini_set('display_errors', 1);
 ini_set('display_startup_error', 1);
@@ -28,8 +28,6 @@ $capsule->setAsGlobal();
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
 
-$routerContainer = new RouterContainer();
-$map = $routerContainer->getMap();
 
 $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
@@ -38,6 +36,8 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_COOKIE,
     $_FILES
 );
+
+
 //
 function ListElements($itm)
 {
@@ -59,6 +59,8 @@ function ListElements($itm)
     echo "</li>";
 }
 //
+$routerContainer = new RouterContainer();
+$map = $routerContainer->getMap();
 
 $map->get('index', '/platzi-php-curso/', [
     'controller' => 'App\Controller\IndexController',
@@ -88,6 +90,8 @@ $map->post('saveProjects', '/platzi-php-curso/projects/add', [
 
 $matcher = $routerContainer->getMatcher();
 $route = $matcher->match($request);
+
+
 
 if (!$route) {
     echo "404";

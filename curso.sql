@@ -12,6 +12,7 @@ CREATE TABLE jobs
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- primary key column
     title text NOT NULL,
     description text NOT NULL,
+    logo text,
     visible BOOLEAN NOT NULL,
     months TINYINT NOT NULL
     -- specify more columns here
@@ -24,6 +25,7 @@ CREATE TABLE projects
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- primary key column
     title text NOT NULL,
     description text NOT NULL,
+    logo text,
     visible BOOLEAN NOT NULL,
     months TINYINT NOT NULL,
     created_at DATETIME NOT NULL,

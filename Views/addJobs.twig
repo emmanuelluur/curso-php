@@ -3,7 +3,7 @@
     <p>
         <h1>ADD JOB</h1>
     </p>
-    <form action="../jobs/add" method='post'>
+    <form action="../jobs/add" method='post' enctype='multipart/form-data'>
         <div class="form-group">
             <label for="title">Titulo</label>
             <input type="text" class='form-control' name="title" id="title">
@@ -12,7 +12,13 @@
             <label for="title">Descripción</label>
             <input type="text" class='form-control' name="description" id="description">
         </div>
-        <div class ='{{ cssClass }}'>
+        <div class='form-group'>
+            
+            <input type="file" class="file-input" id="logo" name = 'logo'>
+                
+            
+        </div>
+        <div class='{{ cssClass }}'>
             {{ responseMessage }}
         </div>
         <button type="submit" class='btn btn-success' name='saveJob' id='saveJob'>Registrar</button>
