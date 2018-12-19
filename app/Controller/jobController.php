@@ -27,15 +27,17 @@ class JobController extends BaseController
                     //  SE OBTIENE NOMBRE DE ARCHIVO
                     $fileName = $logo->getClientFileName();
                     // RUTA LA USAMOS AL GUARDAR LA RUTA DE LA IMAGEN, PARA USARLA EN LA VISTA 
-                    $routeLogo = "../uploads-platzi/{$fileName}";
+                    
+                    $routeUpload = "../../uploads-platzi/{$fileName}"; //   ruta a subir archivo
+                    $routeSave = "../uploads-platzi/{$fileName}";   //  ruta a guardar en BD
                     //  MUEVE ARCHIVO
-                    $logo->moveTo($routeLogo);
+                    $logo->moveTo($routeUpload);
                 }
                 // Guarda datos eloquent ORM
                 $job = new Job;
                 $job->title = $request->getParsedBody()['title'];
                 $job->description = $request->getParsedBody()['description'];
-                $job->logo = $routeLogo;
+                $job->logo = $routeSave;
                 $job->visible = true;
                 $job->save();
                 $responseMessage = "Saved";

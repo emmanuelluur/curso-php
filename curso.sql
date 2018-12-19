@@ -4,10 +4,20 @@
 CREATE DATABASE IF NOT EXISTS platzi_curso DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish2_ci;
 USE platzi_curso;
 
-
+-- Create the table in the specified schema
+CREATE TABLE tbl_users
+(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- primary key column
+    mail varchar(60) NOT NULL,
+    password text NOT NULL,
+    image text,
+    created_at DATETIME,
+    updated_at DATETIME
+    -- specify more columns here
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Create the table in the specified schema
-CREATE TABLE jobs
+CREATE TABLE IF NOT EXISTS jobs
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- primary key column
     title text NOT NULL,
@@ -20,7 +30,7 @@ CREATE TABLE jobs
 
 -- projects
 
-CREATE TABLE projects
+CREATE TABLE IF NOT EXISTS projects
 (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- primary key column
     title text NOT NULL,
