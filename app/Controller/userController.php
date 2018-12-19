@@ -6,7 +6,13 @@ use Respect\Validation\Validator;
 
 class UserController extends BaseController
 {
+    
     public function getUser($request)
+    {
+        return $this->RenderHtml('addUser.twig');
+    }
+
+    public function postSaveUser($request)
     {
         $responseMessage = null;
         $cssClass = null;

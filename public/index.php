@@ -70,9 +70,21 @@ $map->get('addUsers', '/Platzi-Curso/application/users/add', [
     'controller' => "App\Controller\UserController",
     'action' => "getUser"
 ]);
-$map->post('saveUsers', '/Platzi-Curso/application/users/add', [
+$map->post('saveUsers', '/Platzi-Curso/application/users/save', [
     'controller' => "App\Controller\UserController",
-    'action' => "getUser"
+    'action' => "postSaveUser"
+]);
+
+//  Login
+
+$map->get('login', '/Platzi-Curso/application/login', [
+    'controller' => "App\Controller\AuthController",
+    'action' => "getLogin"
+]);
+
+$map->post('auth', '/Platzi-Curso/application/auth', [
+    'controller' => "App\Controller\AuthController",
+    'action' => "postLogin"
 ]);
 
 $matcher = $routerContainer->getMatcher();
