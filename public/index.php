@@ -62,28 +62,28 @@ function ListElements($itm)
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
 
-$map->get('index', '/platzi-php-curso/', [
+$map->get('index', '/Platzi-Curso/application/', [
     'controller' => 'App\Controller\IndexController',
     'action' => 'getIndex'
 ]);
 
 
-$map->get('addJobs', '/platzi-php-curso/jobs/add', [
+$map->get('addJobs', '/Platzi-Curso/application/jobs/add', [
     'controller' => 'App\Controller\JobController',
     'action' => 'getJob'
 ]);
 
-$map->post('saveJobs', '/platzi-php-curso/jobs/add', [
+$map->post('saveJobs', '/Platzi-Curso/application/jobs/add', [
     'controller' => 'App\Controller\JobController',
     'action' => 'getJob'
 ]);
 
-$map->get('addProjects', '/platzi-php-curso/projects/add', [
+$map->get('addProjects', '/Platzi-Curso/application/projects/add', [
     'controller' => "App\Controller\ProjectController",
     'action' => "getProject"
 ]);
 
-$map->post('saveProjects', '/platzi-php-curso/projects/add', [
+$map->post('saveProjects', '/Platzi-Curso/application/projects/add', [
     'controller' => "App\Controller\ProjectController",
     'action' => "getProject"
 ]);

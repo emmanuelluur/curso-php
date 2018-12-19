@@ -27,7 +27,7 @@ class JobController extends BaseController
                     //  SE OBTIENE NOMBRE DE ARCHIVO
                     $fileName = $logo->getClientFileName();
                     // RUTA LA USAMOS AL GUARDAR LA RUTA DE LA IMAGEN, PARA USARLA EN LA VISTA 
-                    $routeLogo = "../../uploads-platzi/{$fileName}";
+                    $routeLogo = "../uploads-platzi/{$fileName}";
                     //  MUEVE ARCHIVO
                     $logo->moveTo($routeLogo);
                 }
