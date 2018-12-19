@@ -10,7 +10,7 @@ class ProjectController extends BaseController
     {
         //  var_dump($request->getParsedBody()); show data from views
         $responseMessage = null;
-        $cssClass = null;
+        $cssClass = null; 
 
         if ($request->getMethod() == 'POST') {
             $projectValidator = Validator::key('title', Validator::stringType()->notEmpty())

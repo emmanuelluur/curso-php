@@ -11,7 +11,7 @@ class JobController extends BaseController
         //  var_dump($request->getParsedBody()); show data from views
         $responseMessage = null;
         $cssClass = null;
-        $routeLogo = null;
+        $routeSave = null;
         if ($request->getMethod() == 'POST') {
             $jobValidator = Validator::key('title', Validator::stringType()->notEmpty())
                 ->key('description', Validator::stringType()->notEmpty());

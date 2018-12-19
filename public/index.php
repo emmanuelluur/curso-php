@@ -37,28 +37,6 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-
-//
-function ListElements($itm)
-{
-    // if ($jobs->visible == false):
-    //     //  si es falso brinca a la siguiente iteracion
-    //     return;
-    // endif;
-    echo "<li class = 'work-position'>";
-    echo "<h5>{$itm->title}</h5>";
-    echo "<p>{$itm->description}</p>";
-    echo $itm->ListMeses();
-    echo "
-    <strong>Achievements:</strong>
-    <ul>
-      <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-      <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-      <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-    </ul>";
-    echo "</li>";
-}
-//
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
 
@@ -88,7 +66,17 @@ $map->post('saveProjects', '/Platzi-Curso/application/projects/add', [
     'action' => "getProject"
 ]);
 
+$map->get('addUsers', '/Platzi-Curso/application/users/add', [
+    'controller' => "App\Controller\UserController",
+    'action' => "getUser"
+]);
+$map->post('saveUsers', '/Platzi-Curso/application/users/add', [
+    'controller' => "App\Controller\UserController",
+    'action' => "getUser"
+]);
+
 $matcher = $routerContainer->getMatcher();
+
 $route = $matcher->match($request);
 
 

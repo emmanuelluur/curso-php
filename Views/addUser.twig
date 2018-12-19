@@ -1,0 +1,23 @@
+{% extends 'baseTemplate.twig' %}
+{% block content %}
+    <p>
+        <h1>ADD USER</h1>
+    </p>
+    <form action="../users/add" method='post' enctype='multipart/form-data'>
+        <div class="form-group">
+            <label for="title">Correo</label>
+            <input type="email" class='form-control' name="mail" id="mail">
+        </div>
+        <div class="form-group">
+            <label for="title">Password</label>
+            <input type="password" class='form-control' name="password" id="password">
+        </div>
+        <div class='form-group'>
+            <input type="file" class="file-input" id="profile" name='profile'>
+        </div>
+        <div class='{{ cssClass }}'>
+            {{ responseMessage }}
+        </div>
+        <button type="submit" class='btn btn-success' name='saveUser' id='saveUser'>Registrar</button>
+    </form>
+{% endblock %}
