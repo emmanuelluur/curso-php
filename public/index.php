@@ -1,6 +1,6 @@
 <?php
 require_once "../vendor/autoload.php";
-require_once "../config.php";
+
 use Aura\Router\RouterContainer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -10,9 +10,22 @@ ini_set('display_startup_error', 1);
 error_reporting(E_ALL);
 //  ***
 session_start();
+//  entorno de congiguracion
+$dotenv = new Dotenv\Dotenv('../');
+$dotenv->load();
+
 $capsule = new Capsule;
-//  configuracion de conexion, los datos son un arreglo ver config.php 
-$capsule->addConnection($config);
+//  configuracion de conexion
+$capsule->addConnection([
+    'driver' => getenv('DB_DRIVER'),
+    'host' => getenv('DB_HOST'),
+    'database' => getenv('DB_NAME'),
+    'username' => getenv('DB_USER'),
+    'password' => getenv('DB_PASSWORD'),
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+]);
 
 // Make this Capsule instance available globally via static methods... (optional)
 $capsule->setAsGlobal();
