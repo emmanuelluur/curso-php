@@ -1,6 +1,6 @@
 <?php
 require_once "../vendor/autoload.php";
-
+require_once "../config.php";
 use Aura\Router\RouterContainer;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -11,24 +11,15 @@ error_reporting(E_ALL);
 //  ***
 session_start();
 $capsule = new Capsule;
-
-$capsule->addConnection([
-    'driver' => 'mysql',
-    'host' => 'localhost',
-    'database' => 'platzi_curso',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix' => '',
-]);
+//  configuracion de conexion, los datos son un arreglo ver config.php 
+$capsule->addConnection($config);
 
 // Make this Capsule instance available globally via static methods... (optional)
 $capsule->setAsGlobal();
 
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
-
+//  peticiones http 
 $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
@@ -36,15 +27,15 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_COOKIE,
     $_FILES
 );
-
+//  mapeo de rutas get y post, los controladores se deben llamar igual que las clases-- lo mismo con los modelos, estandar psr4 y psr7
 $routerContainer = new RouterContainer();
 $map = $routerContainer->getMap();
-
+//  index prinicpal
 $map->get('index', '/Platzi-Curso/application/', [
     'controller' => 'App\Controller\IndexController',
     'action' => 'getIndex',
 ]);
-
+//  jobs map
 $map->get('addJobs', '/Platzi-Curso/application/jobs/add', [
     'controller' => 'App\Controller\JobController',
     'action' => 'getJob',
@@ -55,7 +46,7 @@ $map->post('saveJobs', '/Platzi-Curso/application/jobs/add', [
     'controller' => 'App\Controller\JobController',
     'action' => 'getJob',
 ]);
-
+// projects map
 $map->get('addProjects', '/Platzi-Curso/application/projects/add', [
     'controller' => "App\Controller\ProjectController",
     'action' => "getProject",
@@ -66,7 +57,7 @@ $map->post('saveProjects', '/Platzi-Curso/application/projects/add', [
     'controller' => "App\Controller\ProjectController",
     'action' => "getProject",
 ]);
-
+// users map
 $map->get('addUsers', '/Platzi-Curso/application/users/add', [
     'controller' => "App\Controller\UserController",
     'action' => "getUser",
@@ -94,7 +85,7 @@ $map->get('logout', '/Platzi-Curso/application/logout', [
     'action' => "logOut",
 ]);
 
-// admin
+// admin index
 $map->get('admin', '/Platzi-Curso/application/admin', [
     'controller' => "App\Controller\AdminController",
     'action' => "getIndex",
@@ -111,28 +102,20 @@ if (!$route) {
     echo "404";
 } else {
     $handlerData = $route->handler;
-
     $controllerName = $handlerData['controller'];
-
     $actionName = $handlerData['action'];
-
     $needsAuth = $handlerData['auth'] ?? false; //  si no esta definido pasa false
-
     $sesionId = $_SESSION['userId'] ?? false;
-
     if ($needsAuth && !$sesionId) {
+        //  si la ruta esta protegida y no hay id de session muestra login
        $controllerName = "App\Controller\AuthController";
        $actionName = "getLogin";
     }
-
     $controller = new $controllerName;
-
     $response = $controller->$actionName($request);
-
     foreach ($response->getHeaders() as $name => $values) {
         # recorre cabeceras
         foreach ($values as $value) {
-
             header(sprintf('%s: %s', $name, $value), false);
         }
     }
