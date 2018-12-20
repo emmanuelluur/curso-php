@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Model\User;
+use Zend\Diactoros\Response\RedirectResponse;
+
+//    psr7 messages http
 
 class AuthController extends BaseController
 {
@@ -19,10 +22,11 @@ class AuthController extends BaseController
         $user = User::where('mail', $data['mail'])->first();
         if ($user) {
             if (password_verify($data['password'], $user->password)) {
-                echo "Valido";
+                $_SESSION['userId'] = $user->id;
+                return new RedirectResponse('/Platzi-Curso/application/admin');
             } else {
                 //  muestra mensaje error si password invalido
-                $responseMessage = 'Password invalido';
+                $responseMessage = 'Datos incorrectos';
                 $cssClass = 'alert alert-danger';
                 return $this->RenderHtml('login.twig', [
                     'cssClass' => $cssClass,
@@ -31,14 +35,21 @@ class AuthController extends BaseController
             }
         } else {
             //  muestra mensaje si usuario invalido
-            $responseMessage = 'Usuario No Encontrado';
+            $responseMessage = 'Datos incorrectos';
             $cssClass = 'alert alert-danger';
-            return $this->RenderHtml('login.twig', [
-                'cssClass' => $cssClass,
-                'responseMessage' => $responseMessage,
-            ]);
         }
-
+        return $this->RenderHtml('login.twig', [
+            'cssClass' => $cssClass,
+            'responseMessage' => $responseMessage,
+        ]);
     }
+    public function logOut()
+    {
 
+        session_destroy();
+        return $this->RenderHtml('login.twig', [
+            'cssClass' => 'alert alert-info',
+            'responseMessage' => 'Log Out',
+        ]);
+    }
 }
