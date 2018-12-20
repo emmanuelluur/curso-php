@@ -3,7 +3,7 @@ require_once "../vendor/autoload.php";
 
 use Aura\Router\RouterContainer;
 use Illuminate\Database\Capsule\Manager as Capsule;
-use Zend\Diactoros\Response\RedirectResponse;
+
 //  Muestra errores php
 ini_set('display_errors', 1);
 ini_set('display_startup_error', 1);
@@ -121,7 +121,8 @@ if (!$route) {
     $sesionId = $_SESSION['userId'] ?? false;
 
     if ($needsAuth && !$sesionId) {
-        return new RedirectResponse('../logout');
+       $controllerName = "App\Controller\AuthController";
+       $actionName = "getLogin";
     }
 
     $controller = new $controllerName;
